@@ -50,6 +50,7 @@ body {
     height: 45px;
     background-image: url(../img/indicator-off.png);
     background-size: 45px 45px;
+    background-repeat: no-repeat;
 }
 
 .display {
@@ -59,4 +60,20 @@ body {
     background-color: #000;
     border: 6px solid #c9c3c6;
     border-radius: 5px;
+}
+
+.numpad {
+    margin-top: 35px;
+    display: grid;
+    grid-template-columns: repeat(3, 75px);
+    grid-template-rows: repeat(3, 75px);
+    gap: 5px;
+}
+
+.num {
+    width: 75px;
+    height: 75px;
+    background-image: url(../img/btn-2.png);
+    background-size: 75px 75px;
+    background-repeat: no-repeat;
 }
