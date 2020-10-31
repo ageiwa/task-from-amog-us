@@ -7,11 +7,13 @@ body {
     width: 100vw;
     height: 100vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
 .container {
+    margin-top: 100px;
     width: 795px;
     height: 450px;
     display: flex;
@@ -109,4 +111,49 @@ body {
     border: 5px solid #363534;
     border-radius: 5px;
     background-color: #747374;
+}
+
+.container-start {
+    margin-top: 50px;
+    width: 300px;
+    height: 205px;
+    border: 1px solid red;
+}
+
+.container-arrow-black {
+    margin-left: 20px;
+    width: 280px;
+    height: 205px;
+    background-color: #000;
+    clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
+    overflow: hidden;
+}
+
+.container-arrow-white {
+    margin-left: 5px;
+    margin-top: 5px;
+    width: 265px;
+    height: 195px;
+    background-color: #fff;
+    clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
+    overflow: hidden;
+}
+
+.container-arrow {
+    margin-top: 10px;
+    margin-left: 8px;
+    width: 240px;
+    height: 175px;
+    background-color: #333345;
+    clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
+    overflow: hidden;
+}
+
+.arrow {
+    margin-left: 10px;
+    margin-top: 10px;
+    width: 215px;
+    height: 155px;
+    background-color: #fff;
+    clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
 }
