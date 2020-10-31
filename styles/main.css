@@ -18,43 +18,65 @@ body {
     justify-content: space-between;
 }
 
-.panel {
+.wrap-panel {
     width: 395px;
-    height: 100%;
-    background-image: url(../img/panel.png);
+    height: 450px;
+    background-color: #000;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.wrap {
-    width: 305px;
-    height: 360px;
+.panel {
+    width: 310px;
+    height: 370px;
+    background: linear-gradient(180deg, #abaaab, #737273);
+    border: 35px solid #424142;
+    border-top: 35px solid #cdcbcd;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .indicators-container {
-    padding-top: 20px;
-    padding-left: 25px;
-    padding-right: 25px;
-    width: 100%;
+    margin-top: 20px;
+    width: 250px;
     display: flex;
     justify-content: space-between;
-    box-sizing: border-box;
 }
 
 .indicator {
-    width: 45px;
-    height: 45px;
-    background-image: url(../img/indicator-off.png);
-    background-size: 45px 45px;
-    background-repeat: no-repeat;
+    width: 25px;
+    height: 25px;
+    border: 5px solid #000;
+    border-radius: 100%;
+    background-color: #6a686a;
+    overflow: hidden;
+    box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.5);
+}
+
+.glow {
+    margin-left: 4px;
+    margin-top: 2px;
+    width: 10px;
+    height: 5px;
+    border-radius: 100%;
+    background-color: #fff;
+    transform: rotate(-25deg);
+}
+
+.dark-glow {
+    margin-left: 8px;
+    margin-top: 12px;
+    width: 15px;
+    height: 5px;
+    border-radius: 100%;
+    background-color: #2f2e2f;
+    transform: rotate(-15deg);
 }
 
 .display {
-    margin-top: 35px;
+    margin-top: 40px;
     width: 230px;
     height: 230px;
     background-color: #000;
@@ -63,19 +85,28 @@ body {
 }
 
 .numpad {
-    margin-top: 35px;
+    margin-top: 40px;
     display: grid;
     grid-template-columns: repeat(3, 75px);
     grid-template-rows: repeat(3, 75px);
     gap: 5px;
 }
 
-.num {
+.wrap-num {
     width: 75px;
     height: 75px;
+    background-color: #000;
     border-radius: 10px;
-    background-image: url(../img/btn-2.png);
-    background-size: 75px 75px;
-    background-repeat: no-repeat;
     box-shadow: 0px 20px 10px 5px rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.num {
+    width: 55px;
+    height: 55px;
+    border: 5px solid #363534;
+    border-radius: 5px;
+    background-color: #747374;
 }
