@@ -126,15 +126,15 @@ body {
 
 .container-start {
     margin-top: 50px;
-    width: 300px;
-    height: 205px;
+    width: 220px;
+    height: 125px;
     position: relative;
 }
 
 .container-arrow-black {
     margin-left: 20px;
-    width: 280px;
-    height: 205px;
+    width: 200px;
+    height: 125px;
     background-color: #000;
     clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
     overflow: hidden;
@@ -143,8 +143,8 @@ body {
 .container-arrow-white {
     margin-left: 5px;
     margin-top: 5px;
-    width: 265px;
-    height: 195px;
+    width: 185px;
+    height: 115px;
     background-color: #fff;
     clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
     overflow: hidden;
@@ -153,8 +153,8 @@ body {
 .container-arrow-blue {
     margin-top: 10px;
     margin-left: 8px;
-    width: 240px;
-    height: 175px;
+    width: 160px;
+    height: 95px;
     background-color: #333345;
     clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
     overflow: hidden;
@@ -163,39 +163,39 @@ body {
 .container-arrow-red {
     margin-left: 10px;
     margin-top: 10px;
-    width: 215px;
-    height: 155px;
+    width: 135px;
+    height: 75px;
     background-color: #cc3300;
     clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
     overflow: hidden;
 }
 
 .arrow {
-    width: 205px;
-    height: 155px;
+    width: 135px;
+    height: 75px;
     background-color: #fff;
     clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
 }
 
 .top-color {
-    width: 205px;
-    height: 155px;
+    width: 135px;
+    height: 75px;
     background-color: #bbbbcc;
     clip-path: polygon(0% 0%, 30% 50%, 100% 50%);
     position: absolute;
 }
 
 .left-color {
-    width: 205px;
-    height: 155px;
+    width: 135px;
+    height: 75px;
     background-color: #ccdddd;
     clip-path: polygon(0% 0%, 30% 50%, 0% 100%);
     position: absolute;
 }
 
 .bottom-color {
-    width: 205px;
-    height: 155px;
+    width: 135px;
+    height: 75px;
     background-color: #aabbbb;
     clip-path: polygon(0% 100%, 30% 50%, 100% 50%);
     position: absolute;
@@ -203,8 +203,8 @@ body {
 
 .title {
     left: 0;
-    top: calc(50% - 90px/2);
-    font-size: 90px;
+    top: calc(50% - 60px/2);
+    font-size: 60px;
     position: absolute;
     text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
 }
