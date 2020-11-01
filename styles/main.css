@@ -7,6 +7,7 @@
 body {
     width: 100vw;
     height: 100vh;
+    background-color: #000;
     background-image: url(../img/background.jpg);
     background-size: auto 100%;
     background-position: center center;
@@ -84,11 +85,20 @@ body {
 
 .display {
     margin-top: 40px;
+    padding: 5px;
     width: 230px;
     height: 230px;
     background-color: #000;
     border: 6px solid #c9c3c6;
     border-radius: 5px;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+}
+
+.show-num-active {
+    background-color: #44a8ff;
 }
 
 .numpad {
