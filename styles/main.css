@@ -63,6 +63,10 @@ body {
     box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.5);
 }
 
+.indicator-active {
+    background-color: #00c000;
+}
+
 .glow {
     margin-left: 4px;
     margin-top: 2px;
@@ -128,6 +132,38 @@ body {
     background-color: #747374;
 }
 
+.num-active {
+    border: 5px solid #606360;
+    background-color: #d1d0d1;
+}
+
+.num-pressed {
+    border: 5px solid #1a4160;
+    background-color: #3889d1;
+}
+
+.num-error-1 {
+    border: 5px solid #631700;
+    background-color: #d12f00;
+}
+
+/* indicators on second panel */
+
+.sp-i-error-1 {
+    background-color: #c02c00;
+}
+
+.num-error-2 {
+    border: 5px solid #616361;
+    background-color: #d1d0d1;
+}
+
+/* indicators on second panel */
+
+.sp-i-error-2 {
+    background-color: #c0c0c0;
+}
+
 /*
 
     Button START
@@ -139,6 +175,7 @@ body {
     width: 220px;
     height: 125px;
     position: relative;
+    cursor: default;
 }
 
 .container-arrow-black {
