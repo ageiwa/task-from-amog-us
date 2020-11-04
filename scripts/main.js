@@ -1,203 +1,200 @@
 const btnStart = document.querySelector('.container-start');
 const showNum = document.querySelectorAll('.show-num');
-const num = document.querySelectorAll('.wrap-num');
+const wrapNum = document.querySelectorAll('.wrap-num');
 
-let needClick = [],
-    clicked = [],
+let order = [],
     waiting = true,
-    clickCount = 0,
-    count = 1;
+    counterShowBtn = 0,
+    counterPressedBtn = 0,
+    stage = 1;
 
-for (let i = 0; i < num.length; i++) {
-    num[i].addEventListener('click', () => btnClick(i));
+function generateOrder() {
+    for (let i = 0; i < 5; i++) {
+        let index = Math.floor(Math.random() * (showNum.length - 0)) + 0;
+        order.push(index);
+    }
+}
+
+function accessBtn(action) {
+    const num = document.querySelectorAll('.num');
+
+    for (let i = 0; i < num.length; i++) {
+        if (action === 'unlock') num[i].classList.add('num-active');
+        else num[i].classList.remove('num-active');
+    }
+}
+
+function turnIndicatorOnFirstPanel(action, countIndicators) {
+    const indicator = document.querySelectorAll('.fp-i');
+
+    if (action === 'off') countIndicators = indicator.length;
+
+    for (let i = 0; i < countIndicators; i++) {
+        if (action === 'on') indicator[i].classList.add('indicator-active');
+        else indicator[i].classList.remove('indicator-active');
+    }
+}
+
+function turnIndicatorOnSecondPanel(action, countIndicators) {
+    const indicator = document.querySelectorAll('.sp-i');
+
+    if (action === 'off') countIndicators = indicator.length;
+
+    for (let i = 0; i < countIndicators; i++) {
+        if (action === 'on') indicator[i].classList.add('indicator-active');
+        else indicator[i].classList.remove('indicator-active');
+    }
+}
+
+function success() {
+    const num = document.querySelectorAll('.num');
+
+    setTimeout(() => {
+        for (let i = 0; i < num.length; i++) {
+            num[i].classList.add('num-pressed');
+        }
+    }, 300);
+
+    setTimeout(() => {
+        for (let i = 0; i < num.length; i++) {
+            num[i].classList.remove('num-pressed');
+        }
+    }, 700);
+}
+
+function showOrder() {
+    if (counterShowBtn < stage) {
+        turnIndicatorOnFirstPanel('on', stage);
+
+        let i = order[counterShowBtn];
+
+        showNum[i].classList.add('show-num-active');
+        setTimeout(() => {
+            showNum[i].classList.remove('show-num-active');
+            counterShowBtn++;
+        }, 300);
+
+        setTimeout(() => showOrder(), 500);
+    }
+    else {
+        waiting = false;
+        accessBtn('unlock');
+        return false;
+    }
+}
+
+function completeStage() {
+    if (stage === order.length) {
+        waiting = false;
+        success();
+        setTimeout(() => {
+            accessBtn('lock');
+            turnIndicatorOnFirstPanel('off');
+            turnIndicatorOnSecondPanel('off');
+        }, 700);
+
+        return false;
+    }
+
+    stage++;
+
+    counterShowBtn = 0;
+    counterPressedBtn = 0;
+    waiting = true;
+
+    setTimeout(() => {
+        turnIndicatorOnSecondPanel('off');
+        accessBtn('lock');
+        showOrder();
+    }, 200);
+}
+
+function error(n) {
+    const indicator = document.querySelectorAll('.sp-i');
+    const num = document.querySelectorAll('.num');
+
+    if (n === undefined) n = 0;
+
+    for (let i = 0; i < indicator.length; i++) {
+        if (n % 2 === 0) {
+            indicator[i].classList.remove('sp-i-error-2');
+            indicator[i].classList.add('sp-i-error-1');
+        }
+        else {
+            indicator[i].classList.remove('sp-i-error-1');
+            indicator[i].classList.add('sp-i-error-2');
+        }
+    }
+    for (let i = 0; i < num.length; i++) {
+        if (n % 2 === 0) {
+            num[i].classList.remove('num-error-2');
+            num[i].classList.add('num-error-1');
+        }
+        else {
+            num[i].classList.remove('num-error-1');
+            num[i].classList.add('num-error-2');
+        }
+    }
+
+    if (n === 3) {
+        for (let i = 0; i < indicator.length; i++) {
+            indicator[i].classList.remove('sp-i-error-2');
+        }
+        for (let i = 0; i < num.length; i++) {
+            num[i].classList.remove('num-error-2');
+        }
+
+        startTask();
+
+        return false;
+    }
+
+    n++;
+
+    setTimeout(() => error(n), 300);
+}
+
+function checkingPress(i) {
+    if (i === order[counterPressedBtn]) {
+        counterPressedBtn++;
+
+        turnIndicatorOnSecondPanel('on', counterPressedBtn);
+
+        if (counterPressedBtn === stage) completeStage();
+    }
+    else {
+        counterPressedBtn = 0;
+        error();
+    }
+}
+
+for (let i = 0; i < wrapNum.length; i++) {
+    wrapNum[i].addEventListener('click', () => btnClick(i));
 }
 
 function btnClick(i) {
     if (!waiting) {
-        if (clicked[clickCount] === undefined) clicked.push(i);
+        let num = wrapNum[i].firstElementChild;
 
-        num[i].firstElementChild.classList.add('num-pressed');
-        if (count > 1 && clickCount < 4) setTimeout(() => num[i].firstElementChild.classList.remove('num-pressed'), 200);
+        num.classList.add('num-pressed');
+        setTimeout(() => num.classList.remove('num-pressed'), 200);
 
-        if (clicked[clickCount] === needClick[clickCount]) {
-            clickCount++;
-
-            switchSecondPanelIndicator(clickCount);
-            
-            if (clicked.length === count) {
-                if (count === 5) {
-                    waiting = true;
-                    finish();
-                    return false;
-                }
-
-                if (count < 5) count++;
-
-                clicked = [];
-                clickCount = 0;
-                waiting = true;
-
-                setTimeout(() => {
-                    num[i].firstElementChild.classList.remove('num-pressed');
-
-                    switchNum('diactive');
-                    switchSecondPanelIndicator(clickCount);
-                    start(0);
-                }, 200);
-            }
-        }
-        else {
-            clickCount = 0;
-            error(1);
-        }
+        checkingPress(i);
     }
 }
 
-function error(a) {
-    let i = a;
-
-    const indicator = document.querySelectorAll('.sp-i');
-    const num = document.querySelectorAll('.num');
-
-    if (i === 1 || i === 3) {
-        for (let i = 0; i < indicator.length; i++) {
-            indicator[i].classList.remove('sp-i-error-2');
-            indicator[i].classList.add('sp-i-error-1');
-        }
-    
-        for (let i = 0; i < num.length; i++) {
-            num[i].classList.remove('num-error-2');
-            num[i].classList.add('num-error-1');
-        }
-
-        i++;
-    }
-    else if (i === 2) {
-        for (let i = 0; i < indicator.length; i++) {
-            indicator[i].classList.remove('sp-i-error-1');
-            indicator[i].classList.add('sp-i-error-2');
-        }
-    
-        for (let i = 0; i < num.length; i++) {
-            num[i].classList.remove('num-error-1');
-            num[i].classList.add('num-error-2');
-        }
-
-        i++
-    }
-    else {
-        for (let i = 0; i < indicator.length; i++) {
-            indicator[i].classList.remove('sp-i-error-1');
-            indicator[i].classList.remove('sp-i-error-2');
-        }
-    
-        for (let i = 0; i < num.length; i++) {
-            num[i].classList.remove('num-error-1');
-            num[i].classList.remove('num-error-2');
-        }
-
-        restart();
-
-        return false;
-    }
-
-    setTimeout(() => error(i), 200);
-}
-
-function generateNeedClick() {
-    let array = [];
-
-    for (let i = 0; i < 5; i++) {
-        let index = Math.floor(Math.random() * (showNum.length - 0)) + 0;
-        array.push(index);
-    }
-
-    needClick = array;
-}
-
-function switchFirstPanenlIndicator(state) {
-    const indicator = document.querySelectorAll('.fp-i');
-
-    if (state === 'active') {
-        for (let i = 0; i < count; i++) {
-            indicator[i].classList.add('indicator-active');
-        }
-    }
-    else {
-        for (let i = 0; i < indicator.length; i++) {
-            indicator[i].classList.remove('indicator-active');
-        }
-    }
-}
-
-function switchSecondPanelIndicator(clickCount) {
-    const indicator = document.querySelectorAll('.sp-i');
-
-    for (let i = 0; i < indicator.length; i++) {
-        indicator[i].classList.remove('indicator-active');
-    }
-
-    for (let i = 0; i < clickCount; i++) {
-        indicator[i].classList.add('indicator-active');
-    }
-}
-
-function switchNum(state) {
-    const num = document.querySelectorAll('.num');
-
-    for (let i = 0; i < num.length; i++) {
-        if (state === 'active') num[i].classList.add('num-active');
-        else {
-            num[i].classList.remove('num-active');
-            num[i].classList.remove('num-pressed');
-        }
-    }
-}
-
-function start(a) {
-    let i = a;
-
-    if (i < count) {
-        switchFirstPanenlIndicator('active');
-
-        setTimeout(() => showNum[needClick[i]].classList.add('show-num-active'), 100);
-
-        setTimeout(() => {
-            showNum[needClick[i]].classList.remove('show-num-active');
-            i++;
-        }, 300);
-
-        setTimeout(() => start(i), 500);
-    }
-    else {
-        waiting = false;
-        switchNum('active');
-
-        return false;
-    }
-}
-
-function finish() {
-    const num = document.querySelectorAll('.num');
-
-    for (let i = 0; i < num.length; i++) {
-        num[i].classList.add('num-pressed');
-    }
-}
-
-function restart() {
-    needClick = [];
-    clicked = [];
+function startTask() {
+    order = [];
     waiting = true;
-    clickCount = 0;
-    count = 1;
+    counterShowBtn = 0;
+    counterPressedBtn = 0;
+    stage = 1;
 
-    switchFirstPanenlIndicator('diactive');
-    switchSecondPanelIndicator(clickCount)
-    switchNum('diactive');
+    turnIndicatorOnFirstPanel('off');
+    turnIndicatorOnSecondPanel('off');
 
-    generateNeedClick();
-    start(0);
+    generateOrder();
+    showOrder();
 }
 
-btnStart.addEventListener('click', () => restart());
+btnStart.addEventListener('click', () => startTask());
