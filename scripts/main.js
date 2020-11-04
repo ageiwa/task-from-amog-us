@@ -144,6 +144,7 @@ function error(n) {
             num[i].classList.remove('num-error-2');
         }
 
+        accessBtn('lock');
         startTask();
 
         return false;
@@ -192,6 +193,7 @@ function startTask() {
 
     turnIndicatorOnFirstPanel('off');
     turnIndicatorOnSecondPanel('off');
+    accessBtn('lock');
 
     generateOrder();
     showOrder();
