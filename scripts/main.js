@@ -105,8 +105,9 @@ function completeStage() {
     setTimeout(() => {
         turnIndicatorOnSecondPanel('off');
         accessBtn('lock');
-        showOrder();
-    }, 200);
+    }, 200)
+
+    setTimeout(() => showOrder(), 1000);
 }
 
 function error(n) {
