@@ -168,6 +168,7 @@ function checkingPress(i) {
     }
     else {
         counterPressedBtn = 0;
+        waiting = true;
         error();
     }
 }
