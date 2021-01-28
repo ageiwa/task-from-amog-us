@@ -60,6 +60,8 @@ function success() {
             num[i].classList.remove('num-pressed');
         }
     }, 700);
+
+    waiting = true;
 }
 
 function showOrder() {
