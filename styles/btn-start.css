@@ -1,9 +1,14 @@
 .container-start {
-    margin-top: 50px;
     width: 220px;
     height: 125px;
     position: relative;
     cursor: default;
+}
+
+@media (min-height: 650px) {
+    .container-start {
+        margin-top: 50px;
+    }
 }
 
 .container-arrow-black {
