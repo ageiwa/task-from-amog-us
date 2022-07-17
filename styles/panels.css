@@ -1,0 +1,19 @@
+.wrap-panel {
+    width: 395px;
+    height: 450px;
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.panel {
+    width: 310px;
+    height: 370px;
+    background: linear-gradient(180deg, #abaaab, #737273);
+    border: 35px solid #424142;
+    border-top: 35px solid #cdcbcd;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

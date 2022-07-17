@@ -1,0 +1,41 @@
+.numpad {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(3, 75px);
+    grid-template-rows: repeat(3, 75px);
+    gap: 5px;
+}
+
+.wrap-num {
+    width: 75px;
+    height: 75px;
+    background-color: #000;
+    border-radius: 10px;
+    box-shadow: 0px 20px 10px 5px rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.num {
+    width: 55px;
+    height: 55px;
+    border: 5px solid #363534;
+    border-radius: 5px;
+    background-color: #747374;
+}
+
+.num-active {
+    border: 5px solid #606360;
+    background-color: #d1d0d1;
+}
+
+.num-pressed {
+    border: 5px solid #1a4160;
+    background-color: #3889d1;
+}
+
+.num-error-1 {
+    border: 5px solid #631700;
+    background-color: #d12f00;
+}
